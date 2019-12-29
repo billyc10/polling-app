@@ -1,18 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import './bootstrap.min.css';
-import { invoke } from 'q';
+import './constants/theme';
+import { ANSWER_COLORS } from './constants/theme';
 
-function Square(props) {
+function Selection(props) {
     return (
       <button 
-        className="square"
-        onClick = {props.onClick}
+        id={props.id}
+        className="selection"
+        onClick= {null}
+        style=
+        {
+          {
+            backgroundColor: props.color,
+            border: "solid black"
+          }
+        }
       >
-        {props.value}
       </button>
     );
+}
+
+function Options(props) {
+  return (
+    <Selection id={props.id} color={props.color}> </Selection>
+  )
 }
 
 class Board extends React.Component {
@@ -20,35 +33,13 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: Array(9).fill(null),
-      xNext: true
+      isQuestion: false,
+      question: "Wait for question",
+      answer: null
     }
   }
 
-  checkWin() {
-    const winStates = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8],
-      [0, 3, 6], [1, 4, 7], [2, 5, 8],
-      [0, 4, 8], [2, 4, 6]
-    ]
-    
-    winStates.forEach(combo => {
-
-      const letter = this.state.squares[combo[0]];
-
-      if (letter == null) {return false}
-
-      combo.forEach(i => {
-        if (this.state.squares[i] != letter) {
-          return false
-        }
-      })
-
-      alert(`${combo}`)
-      return true;
-    })
-  }
-
+  /*
   handleClick(i) {
     let nextState = this.state.squares.slice();
     if (this.state.xNext) {
@@ -72,26 +63,19 @@ class Board extends React.Component {
     />;
   }
 
-  render() {
-    const status = 'Next player: ' + (this.state.xNext ? 'X' : 'O');
+  */
 
+  render() {
     return (
       <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+        <h2 className = "question">
+          {this.state.question}
+        </h2>
+        <div className = "answers">
+          <Options id={1} color={ANSWER_COLORS[0]}> </Options>
+          <Options id={2} color={ANSWER_COLORS[1]}> </Options>
+          <Options id={3} color={ANSWER_COLORS[2]}> </Options>
+          <Options id={4} color={ANSWER_COLORS[3]}> </Options>
         </div>
       </div>
     );
@@ -102,12 +86,11 @@ class Game extends React.Component {
   render() {
     return (
       <div className="game">
-        <div className="game-board">
-          <Board />
+        <div className="title">
+          Billy's Cool Poll!
         </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
+        <div className="game-board">
+            <Board />
         </div>
       </div>
     );
