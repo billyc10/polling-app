@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Game from "./App";
+import App from "./App";
 
-ReactDOM.render(<Game style={{backgroundColor: "blue"}}/>, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));

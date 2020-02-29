@@ -1,0 +1,10 @@
+.poll-input {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+};
+
+.form-label {
+    display: flex;
+    flex-direction: column;
+};
