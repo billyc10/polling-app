@@ -1,3 +1,6 @@
+A simple Q&A polling app that retrieves a poll from the polling-server and sends a response back
+=============================================================================================================
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
