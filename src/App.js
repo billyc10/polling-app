@@ -1,11 +1,19 @@
 import React from 'react';
 import './App.css';
-import { Poll, CreatePoll } from './components/index';
+import Poll from './components/Poll/Poll';
+import CreatePoll from './components/CreatePoll/CreatePoll';
 
 export default class App extends React.Component {
     render() {
         return (
-            <CreatePoll />
+            <div>
+                <div>
+                    <CreatePoll />
+                </div>
+            <div>
+                    <Poll />
+            </div>
+           </div>
         );
     }
 }

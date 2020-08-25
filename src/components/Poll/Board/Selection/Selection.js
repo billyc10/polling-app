@@ -6,7 +6,7 @@ const Selection = (props) => {
       <button 
         id={props.id}
         className="selection"
-        onClick= {null}
+        onClick= {props.onClick}
         style=
         {
           {
@@ -15,7 +15,9 @@ const Selection = (props) => {
           }
         }
       >
-        {props.selection}
+        <div className="innerSelection">
+          {props.selection}
+        </div>
       </button>
     );
 };
