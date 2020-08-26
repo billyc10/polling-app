@@ -47,6 +47,13 @@ const CreatePoll = () => {
         }));
     };
 
+    // Render list of possible answers as <option> elements
+    const answerList = [];
+    for (let i = 0; i < 4; i++) {
+        let selection = formData[`selection${i}`];
+        if (selection) { answerList.push(<option key={i} value={selection}> {selection} </option>); }
+    }
+
     // Controlled components, each input field reads and updates from the state
     return (
         <form className='poll-input' onSubmit={handleSubmit}>
@@ -72,9 +79,11 @@ const CreatePoll = () => {
             </label>
             <label className='form-label'>
                 Correct Answer:
-                <input name='answer' type="text" value={formData['answer'] || ''} onChange={handleChange} />
+                <select className='form-label' name='answer' value={formData['answer'] || 'Pine'} onChange={handleChange}>
+                    {answerList}
+                </select>
             </label>
-            <input type="submit" value="Submit" />
+            <input className='submit-btn' type="submit" value="Submit" />
       </form>
     );
 };
