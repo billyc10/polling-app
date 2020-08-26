@@ -28,7 +28,7 @@ const Board = (props) => {
 
     const handleClick = (id) => {
         console.log('Selected ' + id);
-        console.log(id == poll.answer);
+        console.log(poll.selections[id] == poll.answer);
 
         // POST answer to API
         axios.post(API_BASE_URL + '/submitAnswer', {
