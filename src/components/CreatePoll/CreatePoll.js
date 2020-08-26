@@ -62,24 +62,25 @@ const CreatePoll = () => {
                 <input name='question' type="text" value={formData['question'] || ''} onChange={handleChange} />
             </label>
             <label className='form-label'>
-                Answer 1:
+                Option 1:
                 <input name='selection0' type="text" value={formData['selection0'] || ''} onChange={handleChange} />
             </label>
             <label className='form-label'>
-                Answer 2:
+                Option 2:
                 <input name='selection1' type="text" value={formData['selection1'] || ''} onChange={handleChange} />
             </label>
             <label className='form-label'>
-                Answer 3:
+                Option 3:
                 <input name='selection2' type="text" value={formData['selection2'] || ''} onChange={handleChange} />
             </label>
             <label className='form-label'>
-                Answer 4:
+                Option 4:
                 <input name='selection3' type="text" value={formData['selection3'] || ''} onChange={handleChange} />
             </label>
             <label className='form-label'>
                 Correct Answer:
-                <select className='form-label' name='answer' value={formData['answer'] || 'Pine'} onChange={handleChange}>
+                <select className='form-label' name='answer' value={formData['answer'] || '_default'} onChange={handleChange}>
+                    <option value = '_default' disabled> Select Correct Response </option>
                     {answerList}
                 </select>
             </label>
