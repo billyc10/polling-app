@@ -1,4 +1,4 @@
-.game {
+.home-container {
     height: 100vh;
     width: 100%;
     display: flex;
@@ -8,13 +8,13 @@
 }
 
 @media screen and (min-width: 500px) {
-    .game {
+    .home-container {
         width: 500px;
     }
 }
 
 @media screen and (min-width: 667px) {
-    .game {
+    .home-container {
         width: 75%;
     }
 }
@@ -25,10 +25,11 @@
     font-weight: bold;
 }
 
-.game-board {
+.content {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
     text-align: center;
     width: 100%;
+    height: 100vh;
 }

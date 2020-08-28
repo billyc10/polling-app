@@ -11,9 +11,14 @@
     margin: auto;
     margin-top: 20px;
 }
+
+.board-message {
+    font-size: 40px;
+    margin-top: 50px;
+}
   
 @media screen and (min-width: 667px) {
     .answers {
-        width: 75%;
+        width: 500px;
     }
 }
