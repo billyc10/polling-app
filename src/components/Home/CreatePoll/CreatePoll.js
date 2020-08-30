@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './CreatePoll.css';
-import { API_BASE_URL } from '../../constants/urls';
+import { API_BASE_URL } from '../../../constants/urls';
 
 import axios from 'axios';
 

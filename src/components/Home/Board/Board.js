@@ -10,7 +10,7 @@ import axios from 'axios';
 const Board = () => {
 
     // Stores the poll data
-    const[poll, setPoll] = useState({
+    const [poll, setPoll] = useState({
         question: null,
         selections: null,
         answer: null
@@ -54,18 +54,6 @@ const Board = () => {
             setSubmit({submitted: true, correct: poll.selections[id] == poll.answer})
         }
     }
-    
-  
-    const renderSelection = (id) => {
-        return (
-            <Selection
-                id={id}
-                selection={poll.selections ? poll.selections[id] : ''}
-                onClick={() => {handleClick(id)}}
-                color={ANSWER_COLORS[id]}> 
-            </Selection>
-        )
-    }
 
     const BlankMessage = () => {
         return (
@@ -81,6 +69,17 @@ const Board = () => {
                 Answer submitted <br/>
                 {submit.correct ? 'Correct' : 'Incorrect'}!
             </div>
+        )
+    }
+
+    const renderSelection = (id) => {
+        return (
+            <Selection
+                id={id}
+                selection={poll.selections ? poll.selections[id] : ''}
+                onClick={() => {handleClick(id)}}
+                color={ANSWER_COLORS[id]}> 
+            </Selection>
         )
     }
 
