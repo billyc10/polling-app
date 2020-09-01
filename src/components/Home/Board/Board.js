@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from "react-router-dom";
+
 import './Board.css';
 import Selection from './Selection/Selection'
 import { ANSWER_COLORS } from '../../../constants/theme';
 import { API_BASE_URL } from '../../../constants/urls';
+
+
 
 import axios from 'axios';
 
@@ -86,6 +90,11 @@ const Board = () => {
     const BoardSelections = () => {
         return(
             <div>
+                <div>
+                    <button className='home-select'> 
+                        <Link className='router-link' to="/">Home</Link>
+                    </button>
+                </div>
                 <h2 className = "question">
                     {poll.question}
                 </h2>
