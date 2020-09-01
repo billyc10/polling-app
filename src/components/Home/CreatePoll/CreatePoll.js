@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from "react-router-dom";
+
 import './CreatePoll.css';
 import { API_BASE_URL } from '../../../constants/urls';
 
@@ -56,36 +58,44 @@ const CreatePoll = () => {
 
     // Controlled components, each input field reads and updates from the state
     return (
-        <form className='poll-input' onSubmit={handleSubmit}>
-            <label className='form-label'>
-                Question:
-                <input name='question' type="text" value={formData['question'] || ''} onChange={handleChange} />
-            </label>
-            <label className='form-label'>
-                Option 1:
-                <input name='selection0' type="text" value={formData['selection0'] || ''} onChange={handleChange} />
-            </label>
-            <label className='form-label'>
-                Option 2:
-                <input name='selection1' type="text" value={formData['selection1'] || ''} onChange={handleChange} />
-            </label>
-            <label className='form-label'>
-                Option 3:
-                <input name='selection2' type="text" value={formData['selection2'] || ''} onChange={handleChange} />
-            </label>
-            <label className='form-label'>
-                Option 4:
-                <input name='selection3' type="text" value={formData['selection3'] || ''} onChange={handleChange} />
-            </label>
-            <label className='form-label'>
-                Correct Answer:
-                <select className='form-label' name='answer' value={formData['answer'] || '_default'} onChange={handleChange}>
-                    <option value = '_default' disabled> Select Correct Response </option>
-                    {answerList}
-                </select>
-            </label>
-            <input className='submit-btn' type="submit" value="Submit" />
-      </form>
+        <div>
+            <div>
+                <button className='home-select'> 
+                    <Link className='router-link' to="/">Home</Link>
+                </button>
+            </div>
+            <form className='poll-input' onSubmit={handleSubmit}>
+                <label className='form-label'>
+                    Question:
+                    <input name='question' type="text" value={formData['question'] || ''} onChange={handleChange} />
+                </label>
+                <label className='form-label'>
+                    Option 1:
+                    <input name='selection0' type="text" value={formData['selection0'] || ''} onChange={handleChange} />
+                </label>
+                <label className='form-label'>
+                    Option 2:
+                    <input name='selection1' type="text" value={formData['selection1'] || ''} onChange={handleChange} />
+                </label>
+                <label className='form-label'>
+                    Option 3:
+                    <input name='selection2' type="text" value={formData['selection2'] || ''} onChange={handleChange} />
+                </label>
+                <label className='form-label'>
+                    Option 4:
+                    <input name='selection3' type="text" value={formData['selection3'] || ''} onChange={handleChange} />
+                </label>
+                <label className='form-label'>
+                    Correct Answer:
+                    <select className='form-label' name='answer' value={formData['answer'] || '_default'} onChange={handleChange}>
+                        <option value = '_default' disabled> Select Correct Response </option>
+                        {answerList}
+                    </select>
+                </label>
+                <input className='submit-btn' type="submit" value="Submit" />
+            </form>
+        </div>
+        
     );
 };
 
