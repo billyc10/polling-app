@@ -37,7 +37,8 @@ const Board = () => {
 
     useEffect(() => {
         // Subscribe to API SSE for new polls
-        let eventSource = new EventSource(API_BASE_URL + `/pollStream?id=${Math.floor(Math.random() * Math.floor(255))}`)
+        let eventSource = new EventSource(API_BASE_URL + `/pollStream/${Math.floor(Math.random() * Math.floor(255))}`)
+        
         eventSource.onmessage = (e) => {
             console.log('SSE received');
             setPoll(JSON.parse(e.data));
