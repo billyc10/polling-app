@@ -35,8 +35,6 @@ const CreatePoll = () => {
           .catch((error) => {
             console.log(error);
           });
-
-        alert(`Submitting: ${JSON.stringify(poll)}`);
     };
 
     const handleChange = (e) => {
