@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 
-import './CreatePoll.css';
-import { API_BASE_URL } from '../../../constants/urls';
+import './styles/CreatePoll.css';
+import { API_BASE_URL } from '../constants/urls';
 
 import axios from 'axios';
 

@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 
-import './Board.css';
-import Selection from './Selection/Selection'
-import { ANSWER_COLORS } from '../../../constants/theme';
-import { API_BASE_URL } from '../../../constants/urls';
+import './styles/Board.css';
+import Selection from './Selection'
+import { ANSWER_COLORS } from '../constants/theme';
+import { API_BASE_URL } from '../constants/urls';
 
 
 

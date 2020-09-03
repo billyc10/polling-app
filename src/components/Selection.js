@@ -1,5 +1,5 @@
 import React from 'react';
-import './Selection.css';
+import './styles/Selection.css';
 
 const Selection = (props) => {
   return (

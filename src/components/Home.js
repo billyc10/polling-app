@@ -6,9 +6,9 @@ import {
     Link
   } from "react-router-dom";
 
-import './Home.css';
-import Board from './Board/Board';
-import CreatePoll from './CreatePoll/CreatePoll';
+import './styles/Home.css';
+import Board from './Board';
+import CreatePoll from './CreatePoll';
 
 const HomeButtons = () => {
     // Renders two buttons to select option from home page
