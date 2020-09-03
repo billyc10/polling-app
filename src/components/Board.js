@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {Link} from "react-router-dom";
 
 import './styles/Board.css';
@@ -6,53 +6,45 @@ import Selection from './Selection'
 import { ANSWER_COLORS } from '../constants/theme';
 import { API_BASE_URL } from '../constants/urls';
 
-
-
 import axios from 'axios';
 
 
 const Board = () => {
 
     // Stores the poll data
-    const [poll, setPoll] = useState({
+    const [poll, _setPoll] = useState({
         question: null,
         selections: null,
         answer: null
     });
 
+    // useRef is used so SSE event listener 'onmessage' can access the poll state
+    // the event listener is only created once during initial render
+    const pollContainer = useRef(poll);
+
+    const setPoll = (x) => {
+        _setPoll(x);
+        pollContainer.current = x;
+    }
+
     // Tracks submission status
     const[submit, setSubmit] = useState({submitted: false, correct: false});
 
-    
     useEffect(() => {
-        // Call API for current poll
-        axios.get(API_BASE_URL + '/getPoll')
-        .then((response) => {
-            setPoll(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        })
-    }, [])
-
-    useEffect(() => {
-        // Subscribe to API SSE for new polls
+        // Subscribe to API server-sent event for new polls
         let eventSource = new EventSource(API_BASE_URL + `/pollStream/${Math.floor(Math.random() * Math.floor(255))}`)
         
         eventSource.onmessage = (e) => {
-            console.log('SSE received');
-            setPoll(JSON.parse(e.data));
+            // only update poll state if incoming poll data is different
+            if (e.data !== JSON.stringify(pollContainer.current)){
+                setPoll(JSON.parse(e.data));
+                setSubmit({submitted: false, correct: false});
+            }
         }
         eventSource.onerror = (err) => {
             console.log("EventSource failed: ", err);
         }
       }, [])
-
-    
-    useEffect(() => {
-        // If poll has changed, reset our submission status
-        setSubmit({submitted: false, correct: false});
-    }, [poll])
 
     const handleClick = (id) => {
         // Only allow one submission
