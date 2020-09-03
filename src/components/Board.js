@@ -23,8 +23,9 @@ const Board = () => {
     // Tracks submission status
     const[submit, setSubmit] = useState({submitted: false, correct: false});
 
+    
     useEffect(() => {
-        // Call API for new poll
+        // Call API for current poll
         axios.get(API_BASE_URL + '/getPoll')
         .then((response) => {
             setPoll(response.data);
@@ -34,15 +35,27 @@ const Board = () => {
         })
     }, [])
 
+    useEffect(() => {
+        // Subscribe to API SSE for new polls
+        let eventSource = new EventSource(API_BASE_URL + `/pollStream?id=${Math.floor(Math.random() * Math.floor(255))}`)
+        eventSource.onmessage = (e) => {
+            console.log('SSE received');
+            setPoll(JSON.parse(e.data));
+        }
+        eventSource.onerror = (err) => {
+            console.log("EventSource failed: ", err);
+        }
+      }, [])
+
+    
+    useEffect(() => {
+        // If poll has changed, reset our submission status
+        setSubmit({submitted: false, correct: false});
+    }, [poll])
+
     const handleClick = (id) => {
         // Only allow one submission
         if (!submit.submitted) {
-
-            console.log({
-                selected: id,
-                correct: poll.selections[id] == poll.answer
-            });
-    
             // POST answer to API
             axios.post(API_BASE_URL + '/submitAnswer', {
                 answer: id
