@@ -6,11 +6,22 @@ import { API_BASE_URL } from '../constants/urls';
 
 import axios from 'axios';
 
-const CreatePoll = () => {
+const CreatePoll = (props) => {
     // Component is a form that accepts a new poll, and submits it to the API
 
     // formData will hold question, selections and answer. Undefined by default.
     const [formData, setFormData] = useState({});
+    const [id, setId] = useState(null);
+
+    useEffect(() => {
+        axios.get(API_BASE_URL + '/createRoom')
+            .then((response) => {
+                setId(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+      }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,7 +39,10 @@ const CreatePoll = () => {
         };
 
         // Send new poll to API
-        axios.post(API_BASE_URL + '/setPoll', poll)
+        axios.post(API_BASE_URL + '/createPoll', {
+            id: id,
+            poll: poll
+        })
           .then((response) => {
             console.log(response);
           })
@@ -61,6 +75,9 @@ const CreatePoll = () => {
                 <button className='home-select'> 
                     <Link className='router-link' to="/">Home</Link>
                 </button>
+            </div>
+            <div className='room-code'>
+                Room code: {id}
             </div>
             <form className='poll-input' onSubmit={handleSubmit}>
                 <label className='form-label'>

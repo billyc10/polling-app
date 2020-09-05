@@ -3,6 +3,10 @@
     color: black;
 }
 
+.home-select {
+    margin: 10px 0px 10px;
+}
+
 .home-container {
     height: 100vh;
     width: 100%;

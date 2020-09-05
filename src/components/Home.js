@@ -15,7 +15,7 @@ const HomeButtons = () => {
     return (
         <div>
             <button className='home-select'> 
-                <Link className='router-link' to="/create">Create Poll</Link>
+                <Link className='router-link' to="/create">Create Room</Link>
             </button>
             <button className='home-select'>
                 <Link className='router-link' to="/poll">Connect to Poll</Link>
